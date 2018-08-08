@@ -23,7 +23,7 @@ class MysqlOptionService:
         }
         s = os.popen(cmd).read()
         arrs = s.split("\n")
-        return [obj for index, obj in enumerate(arrs) if index != 0 and obj]
+        return [obj for index, obj in enumerate(arrs) if index != 0 and obj and obj != 'information_schema']
 
     def backup_db(self, db):
         """备份数据库"""
