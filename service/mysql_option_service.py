@@ -15,7 +15,15 @@ import os
 class MysqlOptionService:
     def get_db_list(self):
         """获取数据库列表"""
-        return ["blog"]
+        cmd = "mysql -u %(username)s -p%(password)s -P %(port)d -h %(host)s -e 'show databases;'" % {
+            "username": config.mysql_username,
+            "password": config.mysql_password,
+            "port": config.mysql_port,
+            "host": config.mysql_host,
+        }
+        s = os.popen(cmd).read()
+        arrs = s.split("\n")
+        return [obj for index, obj in enumerate(arrs) if index != 0 and obj]
 
     def backup_db(self, db):
         """备份数据库"""
@@ -36,3 +44,4 @@ class MysqlOptionService:
 
         # 执行命令
         system_log_client.debug("执行命令："+cmd)
+        os.system(cmd)

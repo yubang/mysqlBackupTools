@@ -5,6 +5,7 @@ from lib import system_log_client
 from config import config
 from service.mysql_db_service import AllMysqlDbManager, AppointMysqlDbManager
 from service.mysql_option_service import MysqlOptionService
+from service.backup_manager_service import BackupManagerService
 
 
 # 获取要备份的db列表
@@ -16,3 +17,6 @@ else:
 for db in db_list:
     system_log_client.info("开始备份数据库："+db)
     MysqlOptionService().backup_db(db)
+
+# 删除备份
+BackupManagerService().gc()
