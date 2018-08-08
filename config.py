@@ -25,6 +25,7 @@ class Config:
 
         self.backup_path = config_parser.get("backup", "path") + "/" + datetime.now().strftime("%Y%m%d") + "/%s-" + datetime.now().strftime("%Y%m%d%H%M%S") + ".sql"
         self.backup_max_retain_day = int(config_parser.get("backup", "max_retain_day"))
+        self.backup_gzip = True if config_parser.get("backup", "gzip") == 'true' else False
 
     def init(self):
         """初始化程序必要数据"""

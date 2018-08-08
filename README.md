@@ -3,7 +3,7 @@
 
 ## 平台环境要求：
 * python3.6+
-* 支持mysqldump和mysql命令
+* 支持mysqldump和mysql，gzip命令
 
 ## 快速开始：
 * git clone git@github.com:yubang/mysqlBackupTools.git
@@ -38,5 +38,12 @@ all_db = true
 path = d:/abc/123
 # 备份保留天数
 max_retain_day = 30
+# 是否启用gzip压缩
+gzip = true
 ```
+
+## 注意：
+
+* 本工具忽略备份information_schema和performance_schema
+* 备份请自行校验是否正确
 
